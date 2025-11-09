@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Simple TaskList
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Um aplicativo simples de lista de tarefas (To-Do list) full-stack com autenticação de usuário.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Autenticação de Usuários:** Registo e Login com JWT.
+* **CRUD de Tarefas:** Crie, leia, atualize e apague tarefas.
+* **Gestão de Status:** Marque tarefas como concluídas.
+* **Design Responsivo:** Layout adaptável com tema escuro e detalhes em roxo.
+* **Painel de Detalhes:** Clique numa tarefa para ver detalhes (datas de criação/atualização) e editar a descrição.
+* **Tratamento de Erros:** Feedback visual (toasts) e redirecionamento automático em caso de sessão expirada (401).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tecnologias Utilizadas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+* **Frontend:** React (Vite), CSS
+* **Backend:** Node.js, Express
+* **Banco de Dados:** MongoDB (com Mongoose) / PostgreSQL (com Prisma/Sequelize)
+* **Autenticação:** JWT (Tokens)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚀 Como Executar o Projeto
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Este projeto é dividido em duas partes: `frontend` (cliente) e `backend` (API), que está disponível nos repositórios abaixo, com duas opções de banco.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### [Postgres](https://github.com/Rickdebarro/postgres-express-api)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+#### [MongoDB](https://github.com/Rickdebarro/mongoDB-express-api)
+
+
+### 1. Backend (API)
+
+1.  Acesse à pasta do backend:
+    ```bash
+    cd pasta-do-backend
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Crie um arquivo `.env` baseado no `.env.example`. Preencha as variáveis de ambiente, especialmente:
+    * `DATABASE_URL` (a string de conexão do seu Mongo ou Postgres)
+    * `JWT_SECRET` (uma chave secreta para os tokens)
+    * `PORT` (ex: 5000)
+4.  Execute o servidor:
+    ```bash
+    npm run dev
+    ```
+
+### 2. Frontend (Cliente)
+
+1.  Acesse à pasta do frontend (num novo terminal):
+    ```bash
+    cd pasta-do-frontend
+    ```
+2.  Instale as dependências:
+    ```bash
+    npm install
+    ```
+3.  Crie um arquivo `.env` e defina a URL da sua API:
+    ```
+    VITE_API_URL=http://localhost:5000
+    ```
+    *(Use a porta que definiu no `.env` do backend)*
+4.  Execute o cliente:
+    ```bash
+    npm run dev
+    ```
