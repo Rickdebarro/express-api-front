@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import './Form.css';
+import './form.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
