@@ -1,12 +1,12 @@
+// Em src/types.ts
 export interface Task {
   id: string;
-  title: string;
-  description: string | null;
-  completed: boolean;
+  _id?: string;
+  description: string;
+  isDone: boolean;
   createdAt: string;
   updatedAt: string;
 }
-
 export interface LoginResponse {
   token: string;
 }
