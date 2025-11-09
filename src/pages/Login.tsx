@@ -23,6 +23,11 @@ const Login = () => {
 
   return (
     <div className="form-wrapper">
+      <div className="title-container">
+        <h1 className="main-title">
+          Simple<span>&lt;TaskList&gt;</span>
+        </h1>
+      </div>
       <div className="form-container">
         <h2 className="form-title">Login</h2>
         
