@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate, Link } from 'react-router-dom'; // Adicione o Link
+import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import './Form.css';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, loading } = useAuth(); // Tipado!
+  const { login, loading } = useAuth();
   const navigate = useNavigate();
 
-  // 1. Tipar o evento do formulário
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await login(email, password); // Tipado!
-    
+    const result = await login(email, password);
     if (result.success) {
       toast.success('Login bem-sucedido!');
       navigate('/dashboard');
@@ -23,31 +22,51 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {/* Adicione seu CSS aqui */}
-      <form onSubmit={handleSubmit}>
-        <input 
-          type="email" 
-          placeholder="Email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-        />
-        <input 
-          type="password" 
-          placeholder="Senha" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Carregando...' : 'Entrar'}
-        </button>
-      </form>
-      <p>
-        Não tem uma conta? <Link to="/register">Cadastre-se</Link>
-      </p>
+    <div className="form-wrapper">
+      <div className="form-container">
+        <h2 className="form-title">Login</h2>
+        
+        <form onSubmit={handleSubmit} className="form">
+          <div className="form-group">
+            <label htmlFor="email" className="form-label">Email</label>
+            <input 
+              id="email"
+              type="email" 
+              placeholder="seu@email.com" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)} 
+              required 
+              className="form-input"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password" className="form-label">Senha</label>
+            <input 
+              id="password"
+              type="password" 
+              placeholder="Senha" 
+              value={password} 
+              onChange={(e) => setPassword(e.target.value)} 
+              required 
+              className="form-input"
+            />
+          </div>
+          
+          <button 
+            type="submit" 
+            disabled={loading}
+            className="form-button"
+          >
+            {loading ? 'Carregando...' : 'Entrar'}
+          </button>
+        </form>
+        
+        <p className="form-link">
+          Não tem uma conta?{' '}
+          <Link to="/register">Cadastre-se</Link>
+        </p>
+      </div>
     </div>
   );
 };
